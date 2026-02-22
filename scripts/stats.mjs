@@ -1,30 +1,35 @@
 import handler from "../api/index.js";
 
+// Verifica se o token existe
+if (!process.env.PAT_1 && !process.env.GITHUB_TOKEN) {
+  console.error("ERROR: No GitHub token found!");
+  console.error("Set PAT_1 or GITHUB_TOKEN environment variable");
+  process.exit(1);
+}
+
 const req = {
   query: {
     username: "WeslleySantosln",
     show_icons: "true",
     count_private: "true",
+    hide_border: "true",
+    theme: "radical", // opcional: escolha seu tema
   },
 };
 
 let outputData = "";
 const headers = {};
 
-// Mock completo e robusto do objeto res
 const res = {
-  // Armazena headers
   setHeader: (key, value) => {
     headers[key] = value;
   },
   
-  // Retorna o próprio objeto para permitir chaining
   status: function(code) {
     this.statusCode = code;
     return this;
   },
   
-  // Captura o conteúdo enviado
   send: function(data) {
     if (data) {
       outputData += data;
@@ -32,14 +37,12 @@ const res = {
     return this;
   },
   
-  // Captura o conteúdo no end
   end: function(data) {
     if (data) {
       outputData += data;
     }
   },
   
-  // Propriedades adicionais que podem ser acessadas
   statusCode: 200,
   headersSent: false,
 };
@@ -47,24 +50,29 @@ const res = {
 try {
   await handler(req, res);
   
-  // Verifica se houve erro
   if (res.statusCode && res.statusCode !== 200) {
     console.error(`HTTP Status: ${res.statusCode}`);
     console.error("Output:", outputData);
     process.exit(1);
   }
   
-  // Verifica se há conteúdo
-  if (!outputData) {
-    console.error("No output generated");
+  if (!outputData || outputData.length < 100) {
+    console.error("Invalid or empty output generated");
+    console.error("Output:", outputData);
     process.exit(1);
   }
   
-  // Envia para stdout
+  // Verifica se é SVG válido
+  if (!outputData.includes('<svg') || !outputData.includes('</svg>')) {
+    console.error("Generated output is not a valid SVG");
+    console.error("Output:", outputData.substring(0, 500));
+    process.exit(1);
+  }
+  
   process.stdout.write(outputData);
   
 } catch (error) {
-  console.error("Error generating stats:", error);
+  console.error("Error generating stats:", error.message);
   console.error("Stack:", error.stack);
   process.exit(1);
 }
