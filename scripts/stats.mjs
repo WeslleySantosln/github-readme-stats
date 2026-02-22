@@ -3,8 +3,8 @@ import { handler } from "../api/index.js";
 const req = {
   query: {
     username: "WeslleySantosln",
-    theme: "tokyonight",
     show_icons: "true",
+    theme: "tokyonight",
   },
 };
 
