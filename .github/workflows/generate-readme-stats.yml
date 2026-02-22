@@ -22,8 +22,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          node scripts/stats.js > stats.svg
-          node scripts/top-langs.js > top-langs.svg
+          node scripts/stats.cjs > stats.svg
+          node scripts/top-langs.cjs > top-langs.svg
 
       - name: Commit files
         run: |
