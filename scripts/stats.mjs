@@ -15,8 +15,11 @@ const res = {
   status() {
     return this;
   },
-  end(data) {
+  send(data) {
     svg += data;
+  },
+  end(data) {
+    if (data) svg += data;
   },
 };
 
