@@ -23,9 +23,9 @@ jobs:
       
       - name: Generate SVGs
         env:
-          # Mapeia GH_TOKEN para PAT_1 (que o código espera)
           PAT_1: ${{ secrets.GH_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          DOTENV_CONFIG_SILENT: true 
         run: |
           node scripts/stats.mjs > stats.svg
           node scripts/top-langs.mjs > top-langs.svg
