@@ -1,21 +1,25 @@
-(async () => {
-  const mod = await import("../api/top-langs.js");
-  const handler = mod.default;
+import { handler } from "../api/top-langs.js";
 
-  const req = {
-    query: {
-      username: "WeslleySantosln",
-      layout: "compact",
-    },
-  };
+const req = {
+  query: {
+    username: "WeslleySantosln",
+    layout: "compact",
+    theme: "tokyonight",
+  },
+};
 
-  const res = {
-    setHeader: () => {},
-    status: () => ({
-      send: (data) => console.log(data),
-    }),
-    send: (data) => console.log(data),
-  };
+let svg = "";
 
-  await handler(req, res);
-})();
+const res = {
+  setHeader() {},
+  status() {
+    return this;
+  },
+  end(data) {
+    svg += data;
+  },
+};
+
+await handler(req, res);
+
+process.stdout.write(svg);
