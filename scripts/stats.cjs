@@ -1,5 +1,6 @@
 (async () => {
-  const { handler } = await import("../api/index.js");
+  const mod = await import("../api/index.js");
+  const handler = mod.default;
 
   const req = {
     query: {
