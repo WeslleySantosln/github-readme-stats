@@ -1,5 +1,6 @@
 (async () => {
-  const { handler } = await import("../api/top-langs.js");
+  const mod = await import("../api/top-langs.js");
+  const handler = mod.default;
 
   const req = {
     query: {
