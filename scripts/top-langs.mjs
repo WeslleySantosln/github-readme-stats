@@ -1,10 +1,9 @@
-import { handler } from "../api/top-langs.js";
+import handler from "../api/top-langs.js";
 
 const req = {
   query: {
     username: "WeslleySantosln",
     layout: "compact",
-    theme: "tokyonight",
   },
 };
 
