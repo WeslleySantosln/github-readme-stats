@@ -1,22 +1,25 @@
-(async () => {
-  const mod = await import("../api/index.js");
-  const handler = mod.default;
+import { handler } from "../api/index.js";
 
-  const req = {
-    query: {
-      username: "WeslleySantosln",
-      show_icons: "true",
-      count_private: "true",
-    },
-  };
+const req = {
+  query: {
+    username: "WeslleySantosln",
+    theme: "tokyonight",
+    show_icons: "true",
+  },
+};
 
-  const res = {
-    setHeader: () => {},
-    status: () => ({
-      send: (data) => console.log(data),
-    }),
-    send: (data) => console.log(data),
-  };
+let svg = "";
 
-  await handler(req, res);
-})();
+const res = {
+  setHeader() {},
+  status() {
+    return this;
+  },
+  end(data) {
+    svg += data;
+  },
+};
+
+await handler(req, res);
+
+process.stdout.write(svg);
