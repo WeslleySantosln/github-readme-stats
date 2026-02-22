@@ -1,10 +1,20 @@
-const { handler } = require("../api/top-langs");
+(async () => {
+  const { handler } = await import("../api/top-langs.js");
 
-handler(
-  { query: { username: "WeslleySantosln", layout: "compact" } },
-  {
+  const req = {
+    query: {
+      username: "WeslleySantosln",
+      layout: "compact",
+    },
+  };
+
+  const res = {
     setHeader: () => {},
-    status: () => ({ send: console.log }),
-    send: console.log,
-  }
-);
+    status: () => ({
+      send: (data) => console.log(data),
+    }),
+    send: (data) => console.log(data),
+  };
+
+  await handler(req, res);
+})();
