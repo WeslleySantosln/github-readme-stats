@@ -1,4 +1,4 @@
-[dotenv@17.2.3] injecting env (0) from .env -- tip: ✅ audit secrets and track compliance: https://dotenvx.com/ops
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
 
       <svg
         width="467"
@@ -14,7 +14,7 @@
         <style>
           .header {
             font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
-            fill: #fe428e;
+            fill: #2f80ed;
             animation: fadeInAnimation 0.8s ease-in-out forwards;
           }
           @supports(-moz-appearance: auto) {
@@ -23,7 +23,7 @@
           }
           
     .stat {
-      font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #a9fef7;
+      font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #434d58;
     }
     @supports(-moz-appearance: auto) {
       /* Selector detects Firefox */
@@ -34,7 +34,7 @@
       animation: fadeInAnimation 0.3s ease-in-out forwards;
     }
     .rank-text {
-      font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: #a9fef7;
+      font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: #434d58;
       animation: scaleInAnimation 0.3s ease-in-out forwards;
     }
     .rank-percentile-header {
@@ -47,18 +47,18 @@
     .not_bold { font-weight: 400 }
     .bold { font-weight: 700 }
     .icon {
-      fill: #f8d847;
+      fill: #4c71f2;
       display: block;
     }
 
     .rank-circle-rim {
-      stroke: #fe428e;
+      stroke: #2f80ed;
       fill: none;
       stroke-width: 6;
       opacity: 0.2;
     }
     .rank-circle {
-      stroke: #fe428e;
+      stroke: #2f80ed;
       stroke-dasharray: 250;
       fill: none;
       stroke-width: 6;
@@ -112,7 +112,7 @@
           height="99%"
           stroke="#e4e2e2"
           width="466"
-          fill="#141321"
+          fill="#fffefe"
           stroke-opacity="0"
         />
 
