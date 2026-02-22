@@ -17,11 +17,9 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
         env:
           HUSKY: 0
-
-      - run: npm ci
 
       - name: Generate SVGs
         env:
@@ -29,14 +27,6 @@ jobs:
         run: |
           node scripts/stats.cjs > stats.svg
           node scripts/top-langs.cjs > top-langs.svg
-
-      - name: Commit files
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git add stats.svg top-langs.svg
-          git commit -m "chore: update readme stats" || echo "No changes"
-          git push
 
       - name: Commit and push SVG
         run: |
