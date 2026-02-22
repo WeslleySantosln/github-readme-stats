@@ -1,10 +1,10 @@
-import { handler } from "../api/index.js";
+import handler from "../api/index.js";
 
 const req = {
   query: {
     username: "WeslleySantosln",
     show_icons: "true",
-    theme: "tokyonight",
+    count_private: "true",
   },
 };
 
